@@ -12,5 +12,4 @@ def account_owership_decorator(func):
         else:
             return HttpResponseForbidden()
 
-
     return decorated
