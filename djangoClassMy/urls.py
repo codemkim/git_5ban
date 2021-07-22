@@ -18,5 +18,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('account/',include('accountapp.urls')), # account 라는걸 주소창에 입력해라 / 그러면 이 루트로 이동해라
+    path('accounts/',include('accountapp.urls')), # account 라는걸 주소창에 입력해라 / 그러면 이 루트로 이동해라
 ]
