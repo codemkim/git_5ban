@@ -2,14 +2,14 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseForbidden
 
 
-def account_owership_decorator(func):
+def account_ownership_required(func):
     def decorated(request, *args, **kwargs):
-        target_name = User.objects.get(pk=kwargs['pk'])
-
-        if target_name == request.user:
-            return func(request, *args, **kwargs)
+        target_user = User.objects.get(pk=kwargs['pk'])
+        if target_user == request.user:
+            return func(*args, **kwargs)
 
         else:
             return HttpResponseForbidden()
 
     return decorated
+

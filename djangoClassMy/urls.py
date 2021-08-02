@@ -1,4 +1,4 @@
-"""djangoClassMy URL Configuration
+"""djangoClass URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/',include('accountapp.urls')), # account 라는걸 주소창에 입력해라 / 그러면 이 루트로 이동해라
-    path('profiles/', include('profileapp.urls'))
-]
+    path('accounts/', include('accountapp.urls')),
+    path('profiles/', include('profileapp.urls')),
+    path('articles/', include('articleapp.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

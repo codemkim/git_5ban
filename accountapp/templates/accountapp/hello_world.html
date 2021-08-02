@@ -3,29 +3,32 @@
 {% block content %}
 
     <div style="margin : 2rem; text-align: center;">
-        <h1 style="font-family: 'Pacifico', cursive;" class="mb-5">
-            Hello world!
+
+        <h1 style="font-family: Yomogi, cursive", class="m-5">
+            hello world list
         </h1>
 
         <form action="/account/hello_world/" method="post">
             {% csrf_token %}
+            <div class="input-group mb-3 w-50 m-auto">
 
-            <div class="input-group w-50 m-auto mb-3">
-                <input type="text" class="form-control" name = 'hello_world_input'>
+                <input type="text" class="form-control"
+                    name="hello_world_input">
 
-                <button class="btn btn-primary" type="submit">Button</button>
+                <button class="btn btn-dark" type="submit">
+                    Button
+                </button>
+
             </div>
 
         </form>
 
-
         {% if hello_world_list %}
-
             {% for i in hello_world_list %}
-                <h3>{{ i.text }}</h3>
-            {% endfor%}
-
+             <h3>{{ i.text }}</h3>
+            {% endfor %}
         {% endif %}
+
     </div>
 
 {% endblock %}

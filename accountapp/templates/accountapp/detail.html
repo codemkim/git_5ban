@@ -1,28 +1,45 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
     <div class="text-center mw-500 m-auto">
-        <div class="m-5">
-            <h4>{{ target_user.username }}</h4>
-        </div>
-        <div>
-            {{ target_user.date_joined }}
-        </div>
-        {% if user == target_user %}
-        <div>
-            <a href="{% url 'accountapp:update' pk=target_user.pk %}">
-                Update Info
-            </a>
-        </div>
+            {% if target_name.profile %}
+            <img src="{{ target_name.profile.image.url }}"
+                 class="profile_image"
+                 alt="profile image">
 
-        <div>
-            <a href="{% url 'accountapp:delete' pk=target_user.pk %}">
-                Quit
+            <h2 class="NNB_B">
+                {{ target_name.profile.nickname }}
+                {% if target_name == user %}
+                <a href="{% url 'profileapp:update' pk=target_name.profile.pk %}"
+                    class="material-icons round_button">
+                    edit
+                </a>
+                {% endif %}
+            </h2>
+
+            <h5>{{ target_name.profile.message }}</h5>
+            {% else %}
+                <h2>
+                    <a href="{% url 'profileapp:create' %}">
+                        Create Profile
+                    </a>
+                </h2>
+            {% endif %}
+
+        </div>
+        {% if user == target_name %}
+        <div style="text-align: center">
+            <a href="{% url 'accountapp:update' pk=target_name.pk %}"
+                class="material-icons round_button mx-2">
+                settings
+            </a>
+
+            <a href="{% url 'accountapp:delete' pk=target_name.pk %}"
+                class="material-icons round_button mx-2">
+                close
             </a>
         </div>
         {% endif %}
 
     </div>
-
-{% endblock %}
+{% endblock %} #}
